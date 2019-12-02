@@ -1,7 +1,8 @@
 import javax.servlet.http.*;
 import javax.servlet.*;
 import java.io.*;
-public class simpleServlet extends HttpServlet{
+public class
+simpleServlet extends HttpServlet{
 
     public void doGet(HttpServletRequest req,HttpServletResponse res) throws ServletException,IOException
     {
