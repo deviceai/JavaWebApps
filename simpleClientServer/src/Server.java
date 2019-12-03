@@ -11,7 +11,10 @@ public class Server {
             count++;
             System.out.println("client accepted " + count);
             OutputStreamWriter writer = new OutputStreamWriter(clientSocket.getOutputStream());
-            writer.write("<h2>Hello server</h2>");
+            writer.write("HTTP/1.0 200 OK\n" +
+                    "Content-Type: text/html; charset=utf-8\n" +
+                    "\n" +
+                    "<p>My text</p>\n");
             writer.flush();
             writer.close();
         }
