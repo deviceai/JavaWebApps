@@ -1,23 +1,26 @@
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 
 public class Client {
     public static void main(String[] args) throws IOException {
-        Socket clientSocket = new Socket("127.0.0.1", 4000);
+        Socket clientSocket = new Socket("127.0.0.1", 8000);
 
         //byte[] bytes = new byte[256];
         //clientSocket.getInputStream().read(bytes);
         //System.out.println(new String(bytes));
 
+        OutputStreamWriter writer = new OutputStreamWriter(clientSocket.getOutputStream());
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(clientSocket.getInputStream()));
-        String message = reader.readLine();
-        System.out.println(message);
+
+        writer.write("Get me some information\n");
+        writer.flush();
+
+        System.out.println(reader.readLine());
+        reader.close();
 
         clientSocket.close();
+        writer.close();
 
     }
 }
