@@ -46,7 +46,7 @@ public class Phone implements Closeable{
 
     private BufferedReader createReader(){
         try {
-            return new BufferedReader(new InputStreamReader(socket.getInputStream());
+            return new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
