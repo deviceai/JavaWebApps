@@ -22,10 +22,11 @@ public class Server {
 
 
                 ) {
-                    //String request = reader.readLine();
-                    //System.out.println(request);
-                    while (!reader.readLine().isEmpty())
-                        System.out.println(reader.readLine());
+                    String request = reader.readLine();
+                    System.out.println(request);
+
+                    //while (!reader.readLine().isEmpty())
+                      //  System.out.println(reader.readLine());
 
                     writer.write("HTTP/1.0 200 OK\n");
                     writer.write("Content-Type: text/html\n");
