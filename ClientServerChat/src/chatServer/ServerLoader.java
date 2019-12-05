@@ -3,10 +3,15 @@ package chatServer;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class ServerLoader {
 
     private static ServerSocket server;
+    private static ServerHandler handler;
+    static Map<Socket, ClientHandler> handlers = new HashMap<>();
 
     public static void main(String[] args) {
         serverStart();
@@ -23,21 +28,33 @@ public class ServerLoader {
 
     private static void serverHandle() {
         // working with clients here
+        handler = new ServerHandler(server);
+        handler.start();
+        readChat();
+    }
 
-        while (true) {
-            try {
-                Socket client =  server.accept();
-                new ClientHandler(client);
+    private static void readChat(){
+        Scanner scan = new Scanner(System.in);
+        while(true) {
+            if (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                System.out.println(line);
+                if (line.equals("/end"))
+                    serverEnd();
+            } else
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException ex) {
 
-            } catch (IOException e) { e.printStackTrace(); }
-
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e){}
+                }
         }
     }
 
-    private static void serverEnd() {
+    public static ServerHandler getServerHandler(){
+        return handler;
+    }
+
+    public static void serverEnd() {
 
         try {
             server.close();
@@ -45,5 +62,12 @@ public class ServerLoader {
         } catch (IOException e) { e.printStackTrace(); }
     }
 
+    public static ClientHandler getHandler(Socket socket){
+        return handlers.get(socket);
+    }
+
+    public static void invalidate(Socket socket){
+        handlers.remove(socket);
+    }
 
 }
