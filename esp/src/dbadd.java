@@ -22,7 +22,7 @@ public class dbadd extends HttpServlet {
 
         final String URL = "jdbc:mysql://localhost:3306/esptest";
         final String USER = "root";
-        final String PASS = "password";
+        final String PASS = "power7805";
 
         PrintWriter out = response.getWriter();
 
