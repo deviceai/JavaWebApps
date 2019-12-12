@@ -17,6 +17,8 @@
   <a href="/statuscode">HTTP status code example</br></a>
   <a href="/forwardredirect"> Testing forward and redirect</br></a>
   <a href="/usersession"> User session</br></a>
-  <a href="/sessioncart?name=test&quantity=5"> Session cart</a>
+  <a href="/sessioncart?name=test&quantity=5"> Session cart</br></a>
+  Cookies: <a href="/set-cookies"> Set </a><a href="/get-cookies"> Get </a><a href="/delete-cookies"> Delete</a>
+
   </body>
 </html>
